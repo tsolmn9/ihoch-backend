@@ -20,7 +20,7 @@ const getContact = async (req, res) => {
 const editContact = async (req, res) => {
   const { field, value } = req.body;
   if (!["phone", "email", "address"].includes(field)) {
-    return res.status(400).json({ message: "Тохиромжгүй талбар." });
+    return res.status(400).send({ message: "Тохиромжгүй талбар." });
   }
   try {
     const updateData = { [field]: value };
@@ -40,5 +40,4 @@ const editContact = async (req, res) => {
     res.status(500).json({ message: "Серверийн алдаа." });
   }
 };
-
 module.exports = { createContactUs, getContact, editContact };

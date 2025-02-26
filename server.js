@@ -9,9 +9,11 @@ dotenv.config();
 
 const serviceRouter = require("./routes/serviceRoute");
 const contactUsRouter = require("./routes/contactUsRoute");
+const fromUsRouter = require("./routes/fromUsRoute");
 
 app.use("service", serviceRouter);
 app.use("contactUs", contactUsRouter);
+app.use("fromUs", fromUsRouter);
 
 const connectToDb = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
