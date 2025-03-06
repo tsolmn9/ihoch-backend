@@ -27,4 +27,48 @@ const signupAdmin = async (req, res) => {
     res.status(404).send(error);
   }
 };
-module.exports = { signupAdmin };
+const loginAdmin = async (req, res) => {
+  try {
+    const { phoneNumber, password } = req.body;
+    const admin = await adminModel.findOne({ username });
+    if (!admin) {
+      return res.status(404).send("Admin not found");
+    }
+    const passwordValid = await bcrypt.compare(password, admin.password);
+    if (!passwordValid) {
+      return res
+        .status(404)
+        .send("Incorrect phoneNumber and password combination");
+    }
+    const token = jwt.sign(
+      {
+        adminId: admin._id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "3h",
+      }
+    );
+    res.send({ token });
+  } catch (error) {
+    res.status(404).send("Log in error");
+  }
+};
+const getAdmins = async (req, res) => {
+  try {
+    const admins = await adminModel.find();
+    res.status(200).send(admins);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+const getOneAdmin = async (req, res) => {
+  try {
+    const adminId = req.params;
+    const admin = await adminModel.findById(adminId);
+    res.status(200).send(admin);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+};
+module.exports = { signupAdmin, loginAdmin, getAdmins, getOneAdmin };
