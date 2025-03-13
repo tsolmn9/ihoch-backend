@@ -17,10 +17,14 @@ app.use(
 const serviceRouter = require("./routes/serviceRoute");
 const contactUsRouter = require("./routes/contactUsRoute");
 const fromUsRouter = require("./routes/fromUsRoute");
+const adminRouter = require("./routes/adminRoute");
+const workerRouter = require("./routes/workersRoute");
 
 app.use("/service", serviceRouter);
 app.use("/contactUs", contactUsRouter);
 app.use("/fromUs", fromUsRouter);
+app.use("/admin", adminRouter);
+app.use("/workers", workerRouter);
 
 const connectToDb = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
