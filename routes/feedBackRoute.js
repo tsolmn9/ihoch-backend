@@ -9,7 +9,6 @@ const feedBackRouter = Router();
 
 feedBackRouter.post("/createFeedBack", createFeedBack);
 feedBackRouter.get("/getFeedBacks", getFeedBacks);
-feedBackRouter.get("/getFeedBack", getFeedBack);
-feedBackRouter.delete("/deleteFeedBack", deleteFeedBack);
+feedBackRouter.delete("/deleteFeedBack/:feedBackId", deleteFeedBack);
 
 module.exports = feedBackRouter;
