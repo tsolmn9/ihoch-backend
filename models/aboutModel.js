@@ -6,5 +6,5 @@ const aboutSchema = new Schema({
   aboutEn: { type: String, required: true },
   values: { type: String, required: true },
 });
-const aboutModel = mongoose.model("fromUs", aboutSchema);
+const aboutModel = mongoose.model("about", aboutSchema);
 module.exports = aboutModel;
