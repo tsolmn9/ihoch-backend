@@ -16,13 +16,13 @@ app.use(
 
 const serviceRouter = require("./routes/serviceRoute");
 const contactUsRouter = require("./routes/contactUsRoute");
-const fromUsRouter = require("./routes/fromUsRoute");
+const aboutRouter = require("./routes/aboutRoute");
 const adminRouter = require("./routes/adminRoute");
 const workerRouter = require("./routes/workersRoute");
 
 app.use("/service", serviceRouter);
 app.use("/contactUs", contactUsRouter);
-app.use("/fromUs", fromUsRouter);
+app.use("/about", aboutRouter);
 app.use("/admin", adminRouter);
 app.use("/workers", workerRouter);
 
