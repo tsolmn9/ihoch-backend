@@ -28,7 +28,7 @@ const getFeedBack = async (req, res) => {
 };
 const deleteFeedBack = async (req, res) => {
   try {
-    const feedBackId = req.params;
+    const { feedBackId } = req.params;
     const response = await feedBackModel.findByIdAndDelete(feedBackId);
     if (!response) {
       return res.send("Feedback not found");

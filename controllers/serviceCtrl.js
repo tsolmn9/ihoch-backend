@@ -28,7 +28,7 @@ const getOneService = async (req, res) => {
 };
 const deleteService = async (req, res) => {
   try {
-    const serviceId = req.params;
+    const { serviceId } = req.params;
     const deletedService = await serviceModel.findByIdAndDelete(serviceId);
     if (!deletedService) {
       return res.send("Service not found");
@@ -40,7 +40,7 @@ const deleteService = async (req, res) => {
 };
 const updateService = async (req, res) => {
   try {
-    const serviceId = req.params;
+    const { serviceId } = req.params;
     const { infoImg, subTitleMn, captionMn, subTitleEn, captionEn, price } =
       req.body;
 

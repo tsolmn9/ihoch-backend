@@ -63,7 +63,7 @@ const getAdmins = async (req, res) => {
 };
 const getOneAdmin = async (req, res) => {
   try {
-    const adminId = req.params;
+    const { adminId } = req.params;
     const admin = await adminModel.findById(adminId);
     res.status(200).send(admin);
   } catch (error) {

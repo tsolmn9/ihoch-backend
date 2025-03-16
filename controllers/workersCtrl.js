@@ -19,7 +19,7 @@ const getWorkers = async (req, res) => {
 };
 const deleteWorker = async (req, res) => {
   try {
-    const workerId = req.params;
+    const { workerId } = req.params;
     const deletedWorker = await serviceModel.findByIdAndDelete(workerId);
     if (!deletedWorker) {
       return res.send("Worker not found");
@@ -30,7 +30,7 @@ const deleteWorker = async (req, res) => {
   }
 };
 const editWorkerField = async (req, res) => {
-  const workerId = req.params;
+  const { workerId } = req.params;
   const { field, value } = req.body;
 
   const validFields = ["lastName", "firstName", "imgUrl", "job"];
@@ -63,7 +63,7 @@ const editWorkerField = async (req, res) => {
 };
 const getOneWorker = async (req, res) => {
   try {
-    const workerId = req.params;
+    const { workerId } = req.params;
     const worker = await workersModel.findById(workerId);
     res.status(200).send(worker);
   } catch (error) {
