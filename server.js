@@ -19,12 +19,14 @@ const contactUsRouter = require("./routes/contactUsRoute");
 const aboutRouter = require("./routes/aboutRoute");
 const adminRouter = require("./routes/adminRoute");
 const workerRouter = require("./routes/workersRoute");
+const feedBackRouter = require("./routes/feedBackRoute");
 
 app.use("/service", serviceRouter);
 app.use("/contactUs", contactUsRouter);
 app.use("/about", aboutRouter);
 app.use("/admin", adminRouter);
 app.use("/workers", workerRouter);
+app.use("/feedback", feedBackRouter);
 
 const connectToDb = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
