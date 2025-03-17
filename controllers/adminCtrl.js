@@ -12,6 +12,7 @@ const signupAdmin = async (req, res) => {
       password: hashedPassword,
     };
     const response = await adminModel.create(newAdmin);
+    console.log(response);
     const token = jwt.sign(
       {
         adminId: response._id,

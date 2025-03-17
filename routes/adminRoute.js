@@ -10,6 +10,6 @@ const adminRouter = Router();
 adminRouter.post("/createAdmin", signupAdmin);
 adminRouter.post("/loginAdmin", loginAdmin);
 adminRouter.get("/getAdmins", getAdmins);
-adminRouter.get("/getAdmin", getOneAdmin);
+adminRouter.get("/getAdmin/:adminId", getOneAdmin);
 
 module.exports = adminRouter;
