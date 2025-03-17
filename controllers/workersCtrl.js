@@ -30,9 +30,14 @@ const deleteWorker = async (req, res) => {
   }
 };
 const editWorker = async (req, res) => {
+  const { workerId } = req.params;
   const body = req.body;
 
   try {
+    if (!workerId) {
+      return res.status(400).send({ message: "Ажилтны ID олдсонгүй." });
+    }
+
     const updatedWorkerInfo = await workersModel.findByIdAndUpdate(
       workerId,
       { $set: body },
