@@ -8,6 +8,6 @@ const contactUsRouter = Router();
 
 contactUsRouter.post("/createContact", createContactUs);
 contactUsRouter.get("/getContact", getContact);
-contactUsRouter.put("/contactEdit", editContact);
+contactUsRouter.put("/contactEdit/:contactId", editContact);
 
 module.exports = contactUsRouter;
