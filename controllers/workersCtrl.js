@@ -31,7 +31,7 @@ const deleteWorker = async (req, res) => {
 };
 const editWorker = async (req, res) => {
   const { workerId } = req.params;
-  const body = req.body;
+  const { firstName, lastName, job, imgUrl } = req.body;
 
   try {
     if (!workerId) {
@@ -40,7 +40,7 @@ const editWorker = async (req, res) => {
 
     const updatedWorkerInfo = await workersModel.findByIdAndUpdate(
       workerId,
-      { $set: body },
+      { $set: firstName, lastName, job, imgUrl },
       { new: true }
     );
 
