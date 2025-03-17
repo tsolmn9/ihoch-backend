@@ -20,7 +20,7 @@ const getWorkers = async (req, res) => {
 const deleteWorker = async (req, res) => {
   try {
     const { workerId } = req.params;
-    const deletedWorker = await serviceModel.findByIdAndDelete(workerId);
+    const deletedWorker = await workersModel.findByIdAndDelete(workerId);
     if (!deletedWorker) {
       return res.send("Worker not found");
     }
@@ -29,38 +29,26 @@ const deleteWorker = async (req, res) => {
     res.status(404).send(error);
   }
 };
-const editWorkerField = async (req, res) => {
-  const { workerId } = req.params;
-  const { field, value } = req.body;
-
-  const validFields = ["lastName", "firstName", "imgUrl", "job"];
-  if (!validFields.includes(field)) {
-    return res.status(400).send({ message: "Тохиромжгүй талбар." });
-  }
+const editWorker = async (req, res) => {
+  const body = req.body;
 
   try {
-    if (!workerId) {
-      return res.status(400).send({ message: "Ажилтны ID олдсонгүй." });
-    }
-
-    const updateData = { [field]: value };
-
     const updatedWorkerInfo = await workersModel.findByIdAndUpdate(
       workerId,
-      updateData,
+      { $set: body },
       { new: true }
     );
 
     if (!updatedWorkerInfo) {
       return res.status(404).send({ message: "Ажилтан олдсонгүй." });
     }
-
     res.status(200).send(updatedWorkerInfo);
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "Алдаа гарлаа." });
   }
 };
+
 const getOneWorker = async (req, res) => {
   try {
     const { workerId } = req.params;
@@ -74,6 +62,6 @@ module.exports = {
   createWorker,
   getWorkers,
   deleteWorker,
-  editWorkerField,
+  editWorker,
   getOneWorker,
 };
