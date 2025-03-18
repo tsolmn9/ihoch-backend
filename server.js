@@ -8,9 +8,9 @@ dotenv.config();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://ikh-och.vercel.app"],
+    origin: ["https://ikh-och.vercel.app", "http://localhost:3000"],
     methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type, Authorization",
+    allowedHeaders: "Content-Type",
   })
 );
 
