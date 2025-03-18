@@ -40,7 +40,7 @@ const editWorker = async (req, res) => {
 
     const updatedWorkerInfo = await workersModel.findByIdAndUpdate(
       workerId,
-      { $set: firstName, lastName, job, imgUrl },
+      { $set: { firstName, lastName, job, imgUrl } },
       { new: true }
     );
 
