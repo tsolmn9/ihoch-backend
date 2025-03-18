@@ -23,9 +23,12 @@ const editContact = async (req, res) => {
   try {
     const updatingContact = await contactUsModel.findByIdAndUpdate(
       contactId,
-      { $set: phone, email, address },
+      { $set: { phone, email, address } },
       { new: true }
     );
+    if (!updatingContact) {
+      return res.status(404).send({ message: "Contact not found" });
+    }
     res.status(200).send(updatingContact);
   } catch (error) {
     res.status(404).send(error);
